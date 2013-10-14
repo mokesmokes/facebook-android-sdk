@@ -141,21 +141,21 @@ public final class FacebookRequestError {
                 errorCategory = Category.THROTTLING;
             } else if (errorCode == EC_PERMISSION_DENIED || EC_RANGE_PERMISSION.contains(errorCode)) {
                 errorCategory = Category.PERMISSION;
-                messageId = R.string.com_facebook_requesterror_permissions;
+                messageId = -1;
             } else if (errorCode == EC_INVALID_SESSION || errorCode == EC_INVALID_TOKEN) {
                 if (subErrorCode == EC_USER_CHECKPOINTED || subErrorCode == EC_UNCONFIRMED_USER) {
                     errorCategory = Category.AUTHENTICATION_RETRY;
-                    messageId = R.string.com_facebook_requesterror_web_login;
+                    messageId = -1;
                     shouldNotify = true;
                 } else {
                     errorCategory = Category.AUTHENTICATION_REOPEN_SESSION;
 
                     if ((subErrorCode == EC_APP_NOT_INSTALLED) || (subErrorCode == EC_EXPIRED)) {
-                        messageId = R.string.com_facebook_requesterror_relogin;
+                        messageId = -1;
                     } else if (subErrorCode == EC_PASSWORD_CHANGED) {
-                        messageId = R.string.com_facebook_requesterror_password_changed;
+                        messageId = -1;
                     } else {
-                        messageId = R.string.com_facebook_requesterror_reconnect;
+                        messageId = -1;
                         shouldNotify = true;
                     }
                 }

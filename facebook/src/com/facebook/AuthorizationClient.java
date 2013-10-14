@@ -26,6 +26,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.webkit.CookieSyncManager;
+
 import com.facebook.android.R;
 import com.facebook.internal.AnalyticsEvents;
 import com.facebook.internal.NativeProtocol;
@@ -36,6 +37,7 @@ import com.facebook.model.GraphObject;
 import com.facebook.model.GraphObjectList;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.WebDialog;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -211,9 +213,11 @@ class AuthorizationClient implements Serializable {
 
         int permissionCheck = checkPermission(Manifest.permission.INTERNET);
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            String errorType = context.getString(R.string.com_facebook_internet_permission_error_title);
-            String errorDescription = context.getString(R.string.com_facebook_internet_permission_error_message);
-            complete(Result.createErrorResult(pendingRequest, errorType, errorDescription));
+            //String errorType = context.getString(R.string.com_facebook_internet_permission_error_title);
+            //String errorDescription = context.getString(R.string.com_facebook_internet_permission_error_message);
+            String errorType = context.getString(Utility.resId_errorTitle);
+            String errorDescription = context.getString(Utility.resId_errorMessage);
+        	complete(Result.createErrorResult(pendingRequest, errorType, errorDescription));
 
             return false;
         }
